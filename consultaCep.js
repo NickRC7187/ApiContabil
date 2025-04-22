@@ -1,0 +1,24 @@
+async function buscarCep() {
+  const cep = 14801722;
+  const url = `https://api.nuvemfiscal.com.br/cep/${cep}`;
+  const token =
+    "eyJ0eXAiOiJKV1QiLCJraWQiOiIwMWIwNDFkMWQ2MTU0NjA0NzNkMWI1NGFhOGRlNGQ1NyIsImFsZyI6IlJTMjU2In0.eyJzY29wZSI6ImVtcHJlc2EgY2VwIGNucGogbmZzZSIsImp0aSI6ImZkN2YwNjdmLTZhOTktNGM0NS1iZmIyLTIyODc5ZjFjNTFmZiIsImh0dHBzOlwvXC9udXZlbWZpc2NhbC5jb20uYnJcL3RlbmFudF9pZCI6IjNhMTk2MTA2LTA2N2EtNDk2Ny04ODg4LWJjMDliZjVkZWRiNyIsImlzcyI6Imh0dHBzOlwvXC9hdXRoLm51dmVtZmlzY2FsLmNvbS5iciIsImF1ZCI6Imh0dHBzOlwvXC9hcGkubnV2ZW1maXNjYWwuY29tLmJyXC8iLCJleHAiOjE3NDc1OTU2NDAsImlhdCI6MTc0NTAwMzY0MCwiY2xpZW50X2lkIjoiYlo5eGlhSW5VNHNzRmd5a01pNHAifQ.IlZM47Nr4wR0zJtpPkg85PHNF7JsmhMsUwcj_CLrQDINLjI7QQUzICQWHVrDyaPPTR7XPsHeQNEtaKSEiP52xJqLv1kKho7ER9HWFQAECr_36jUT814YqHKN7e9OYx-7Z88CTcFY0BzRtnqwdDqCdo4_rMSMPH6ddniEbnHvu0-D7tGFaNg_N_H99vxE-JqZ_YD97Qv4tQlLMOaBbOXx5D_Arde2PZaWGuFQ_f3WwpaeEHrit8UtNQe4T53yEOzL7zf2WQmnGZbQauO06hSvbxFbdA95BWFHnUJ-KUVrR8MIq8HBnookO6QPXKBHx1PeuDFXrQvfS2rpIoQ5rfuNEQ";
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (errorr) {
+    console.error("Erro ao buscar o CEP:", errorr);
+  }
+}
+
+buscarCep();
